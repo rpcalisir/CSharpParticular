@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OCPLibrary\Accounts.cs" />
+    <Compile Include="OCPLibrary\Employee.cs" />
+    <Compile Include="OCPLibrary\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
