@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenClosedPrinciple.OCPLibrary
+namespace OpenClosedPrinciple.OCPLibrary.Concrete
 {
-    public class Employee
+    public class Person
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string EmailAddress { get; set; }
     }
 }

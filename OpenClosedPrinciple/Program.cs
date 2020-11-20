@@ -1,4 +1,5 @@
 ﻿using OpenClosedPrinciple.OCPLibrary;
+using OpenClosedPrinciple.OCPLibrary.Helper;
 using System;
 using System.Collections.Generic;
 
@@ -8,25 +9,20 @@ namespace OpenClosedPrinciple
     {
         static void Main(string[] args)
         {
-            List<Person> applicants = new List<Person>()
-            {
-                new Person(){FirstName = "recep", LastName = "calisir"},
-                new Person(){FirstName = "tim", LastName = "corey"}
-            };
+            var people = GeneratePeople.Generate();
 
-            Accounts accountProcessor = new Accounts();
-            List<Employee> employees = new List<Employee>();
+            var employees = new List<Employee>();
+            Accounts accountGenerator = new Accounts();
 
-            foreach (var applicant in applicants)
+            foreach (var person in people)
             {
-                employees.Add(accountProcessor.Create(applicant));
+                employees.Add(accountGenerator.CreateAccount(person));
             }
 
             foreach (var employee in employees)
             {
-                Console.WriteLine($"{employee.FirstName} {employee.LastName} : {employee.EmailAddress} ");
+                Console.WriteLine($"{employee.FirstName} {employee.LastName}: {employee.EmailAddress}");
             }
-
 
             Console.ReadLine();
         }

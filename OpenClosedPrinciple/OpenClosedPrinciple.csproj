@@ -44,13 +44,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OCPLibrary\Accounts.cs" />
-    <Compile Include="OCPLibrary\Employee.cs" />
-    <Compile Include="OCPLibrary\Person.cs" />
+    <Compile Include="OCPLibrary\Concrete\Employee.cs" />
+    <Compile Include="OCPLibrary\Helper\GeneratePeople.cs" />
+    <Compile Include="OCPLibrary\Interface\IEmployee.cs" />
+    <Compile Include="OCPLibrary\Concrete\Person.cs" />
+    <Compile Include="OCPLibrary\Interface\IExecutive.cs" />
+    <Compile Include="OCPLibrary\Interface\IManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
