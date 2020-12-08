@@ -1,13 +1,8 @@
-﻿using OpenClosedPrinciple.OCPLibrary.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace OpenClosedPrinciple.OCPLibrary.Concrete
 {
-    public class Employee : IEmployee
+    public class Employee
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

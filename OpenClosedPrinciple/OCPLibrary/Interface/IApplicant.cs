@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace OpenClosedPrinciple.OCPLibrary.Interface
 {
-    interface IExecutive : IEmployee
+    public interface IApplicant
     {
-        bool isExecutive { get; set; }
+        string FirstName { get; set; }
+        string LastName { get; set; }
+        IAccounts AccountGenerator { get; set; }
     }
 }

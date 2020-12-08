@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace OpenClosedPrinciple.OCPLibrary.Interface
 {
-    interface IManager : IEmployee
+    public interface IAccounts
     {
-        bool IsManager { get; set; }
+
     }
 }
