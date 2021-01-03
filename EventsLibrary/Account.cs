@@ -47,11 +47,13 @@ namespace EventsLibrary
             //If Checking Account balance is enough to pay
             if (Balance>=amount)
             {
+                //Performs withdrawing operation for bot checking and saving accounts.
                 _transactions.Add($"Withdrew {string.Format("{0:C2}",amount)} for {paymentName}");
                 Balance -= amount;
                 TransactionCompletedEvent?.Invoke(this, paymentName);
                 return true;
             }
+            //Perform operation for saving account.
             else//Look for saving account balance to transfer into checking account
             {
                 if (backupAccount != null)
@@ -66,7 +68,8 @@ namespace EventsLibrary
                         {
                             return false;
                         }
-
+                        //When backupAccount object's MakePayment method is called, backupAccount's Balance property is 
+                        //being processed as Balance, meaning it's Balance is becoming actual Balance.
                         //backupAccount object will run it's MakePayment method with it's own Balance property.
                         //This way it will make transaction up above in the first if
                         bool isTransferSucceeded = backupAccount.MakePayment("Overdraft Protection", amountNeeded);
