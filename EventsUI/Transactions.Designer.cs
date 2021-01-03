@@ -35,6 +35,7 @@ namespace EventsUI
             this.lblCustomerName = new System.Windows.Forms.Label();
             this.btnMakePurchase = new System.Windows.Forms.Button();
             this.Amount = new System.Windows.Forms.NumericUpDown();
+            this.lblError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Amount)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,11 +97,24 @@ namespace EventsUI
             this.Amount.Size = new System.Drawing.Size(120, 22);
             this.Amount.TabIndex = 9;
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(140, 242);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(95, 29);
+            this.lblError.TabIndex = 14;
+            this.lblError.Text = "<none>";
+            this.lblError.Visible = false;
+            // 
             // Transactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(401, 296);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.Amount);
             this.Controls.Add(this.btnMakePurchase);
             this.Controls.Add(this.lblCustomerName);
@@ -109,7 +123,6 @@ namespace EventsUI
             this.Controls.Add(this.label1);
             this.Name = "Transactions";
             this.Text = "Transactions";
-            this.Load += new System.EventHandler(this.Transactions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Amount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -124,5 +137,6 @@ namespace EventsUI
         private System.Windows.Forms.Label lblCustomerName;
         private System.Windows.Forms.Button btnMakePurchase;
         private System.Windows.Forms.NumericUpDown Amount;
+        private System.Windows.Forms.Label lblError;
     }
 }

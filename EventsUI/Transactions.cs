@@ -19,17 +19,32 @@ namespace EventsUI
             InitializeComponent();
             _customer = customer;
             lblCustomerName.Text = _customer.CustomerName;
+
+            //The reason using checkingAccount object's event is that checkingAccount is the main object
+            //that we work on.
+            _customer.CheckingAccount.OverdraftEvent += CheckingAccount_OverdraftEvent;
         }
+
+        private void CheckingAccount_OverdraftEvent(object sender, OverdraftEventArgs e)
+        {
+            lblError.Text = $"You have an overdraft";
+            lblError.Visible = true;
+        }
+
+        //private void CheckingAccount_OverdraftEvent(object sender, decimal e)
+        //{
+        //    lblError.Text = $"You have an overdraft";
+        //    lblError.Visible = true;
+        //}
 
         private void btnMakePurchase_Click(object sender, EventArgs e)
         {
-            bool isPurchased = _customer.CheckingAccount.MakePayment("CreditCardPayment", Amount.Value, _customer.SavingsAccount);
+            //This way it is not connected to checking account
+            //Account account = new Account();
+            //account.MakePayment("Card Purchase", Amount.Value, _customer.SavingsAccount);
+
+            _customer.CheckingAccount.MakePayment("Card Purchase", Amount.Value, _customer.SavingsAccount);
             Amount.Value = 0;
-        }
-
-        private void Transactions_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

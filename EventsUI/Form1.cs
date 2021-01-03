@@ -40,28 +40,52 @@ namespace EventsUI
             lstChecking.DataSource = customer.CheckingAccount.Transactions;
             lstSaving.DataSource = customer.SavingsAccount.Transactions;
 
-            customer.CheckingAccount.TransactionCompleteEvent += CheckingAccount_TransactionCompleteEvent;
-            customer.SavingsAccount.TransactionCompleteEvent += SavingsAccount_TransactionCompleteEvent;
+            customer.CheckingAccount.TransactionCompletedEvent += CheckingAccount_TransactionCompletedEvent;
+            customer.SavingsAccount.TransactionCompletedEvent += SavingsAccount_TransactionCompletedEvent;
+
+            customer.CheckingAccount.OverdraftEvent += CheckingAccount_OverdraftEvent;
         }
 
-        private void SavingsAccount_TransactionCompleteEvent(object sender, string e)
+        private void CheckingAccount_OverdraftEvent(object sender, OverdraftEventArgs e)
         {
-            lstSaving.DataSource = null;
-            lstSaving.DataSource = customer.SavingsAccount.Transactions;
-            txtSavingBalance.Text = string.Format("{0:C2}", customer.SavingsAccount.Balance);
+            lblError.Text = $"You had an overdraft protection transfer of {string.Format("{0:C2}", e.AmountNeeded)}";
+            e.StopOverdraft = cbxStopOverdraft.Checked;
+            if (cbxStopOverdraft.Checked)
+            {
+                MessageBox.Show("Overdraft is not allowed!");
+            }
+            lblError.Visible = true;
         }
 
-        private void CheckingAccount_TransactionCompleteEvent(object sender, string e)
+        //private void CheckingAccount_OverdraftEvent(object sender, decimal e)
+        //{
+        //    lblError.Text = $"You had an overdraft protection transfer of {string.Format("{0:C2}", e)}";
+        //    lblError.Visible = true;
+        //}
+
+        private void CheckingAccount_TransactionCompletedEvent(object sender, string e)
         {
             lstChecking.DataSource = null;
             lstChecking.DataSource = customer.CheckingAccount.Transactions;
             txtCheckingBalance.Text = string.Format("{0:C2}", customer.CheckingAccount.Balance);
         }
 
+        private void SavingsAccount_TransactionCompletedEvent(object sender, string e)
+        {
+            lstSaving.DataSource = null;
+            lstSaving.DataSource = customer.SavingsAccount.Transactions;
+            txtSavingBalance.Text = string.Format("{0:C2}", customer.SavingsAccount.Balance);
+        }
+
         private void btnRecordTransaction_Click(object sender, EventArgs e)
         {
             Transactions transactions = new Transactions(customer);
             transactions.Show();
+        }
+
+        private void lblError_Click(object sender, EventArgs e)
+        {
+            lblError.Visible = false;
         }
     }
 }

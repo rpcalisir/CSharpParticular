@@ -1,69 +1,100 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EventsLibrary
 {
     public class Account
     {
-        public decimal Balance { get; private set; }
         private readonly List<string> _transactions = new List<string>();
+        //the reason of private set is letting change on this property only inside of this class.
+        public decimal Balance { get; private set; }
 
-        public event EventHandler<string> TransactionCompleteEvent;
+        public event EventHandler<string> TransactionCompletedEvent;
+        //public event EventHandler<decimal> OverdraftEvent;
+        public event EventHandler<OverdraftEventArgs> OverdraftEvent;
 
-        public IReadOnlyList<string> Transactions {
+        public IReadOnlyList<string> Transactions 
+        {
             get
             {
                 return _transactions.AsReadOnly();
             }
         }
-
+        /// <summary>
+        /// Adds money into checking account
+        /// </summary>
+        /// <param name="depositName"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
         public bool AddDeposit(string depositName, decimal amount)
         {
-            _transactions.Add($"Deposited {string.Format("{0:C2}", amount)} for {depositName}");
+            _transactions.Add($"Deposited {string.Format("{0:C2}",amount)} for {depositName}");
             Balance += amount;
-            TransactionCompleteEvent?.Invoke(this, depositName);
+            TransactionCompletedEvent?.Invoke(this, depositName);
             return true;
         }
-
+        /// <summary>
+        /// Substracts the specified amount from Checking Account.
+        /// If balance is not enough in Checking Account, then it checks Saving Account.
+        /// backupAccount = null specifies this argument is optional.
+        /// </summary>
+        /// <param name="paymentName"></param>
+        /// <param name="amount"></param>
+        /// <param name="backupAccount"></param>
+        /// <returns></returns>
         public bool MakePayment(string paymentName, decimal amount, Account backupAccount = null)
         {
-            if (Balance >= amount)
+            //If Checking Account balance is enough to pay
+            if (Balance>=amount)
             {
-                _transactions.Add($"Withdrew {string.Format("{0:C2}", amount)} for {paymentName}");
+                _transactions.Add($"Withdrew {string.Format("{0:C2}",amount)} for {paymentName}");
                 Balance -= amount;
-                TransactionCompleteEvent?.Invoke(this, paymentName);
+                TransactionCompletedEvent?.Invoke(this, paymentName);
                 return true;
             }
-            else
+            else//Look for saving account balance to transfer into checking account
             {
                 if (backupAccount != null)
                 {
-                    if ((backupAccount.Balance + Balance) >= amount)
+                    if ((Balance + backupAccount.Balance) >= amount)
                     {
                         decimal amountNeeded = amount - Balance;
-                        //When backupAccount object's MakePayment method is called, it's Balance property is being
-                        //processed as Balance, meaning it's Balance is becoming actual Balance
-                        bool overdraftSucceeded = backupAccount.MakePayment("Overdraft Protection", amountNeeded);
-                        if (!overdraftSucceeded)
+                        OverdraftEventArgs args = new OverdraftEventArgs(amountNeeded, "Extra Info");
+                        OverdraftEvent?.Invoke(this, args);
+
+                        if (args.StopOverdraft)
                         {
                             return false;
                         }
 
-                        AddDeposit("Overdraft Protection Deposit", amountNeeded);
-                        _transactions.Add($"Withdrew {string.Format("{0:C2}", amount)} for {paymentName}");
+                        //backupAccount object will run it's MakePayment method with it's own Balance property.
+                        //This way it will make transaction up above in the first if
+                        bool isTransferSucceeded = backupAccount.MakePayment("Overdraft Protection", amountNeeded);
+
+                        //This check is redundant, because if backupAccount.Balance is not enough, then it would
+                        //not enter in this if in the first place.
+                        if (!isTransferSucceeded)
+                        {
+                            return false;
+                        }
+
+                        //Adding balance into checking account from saving account after checking it is enough
+                        //and making transaction from saving account with displayin it.
+                        AddDeposit("Overdraft Protection", amountNeeded);
+                        
+
+                        //Finally making the payment
+                        _transactions.Add($"Withdrew {string.Format("{0:C2}",amount)} for {paymentName}");
                         Balance -= amount;
-                        TransactionCompleteEvent?.Invoke(this, paymentName);
+                        TransactionCompletedEvent?.Invoke(this, paymentName);
                         return true;
                     }
-                    else
+                    else//if total balance of saving and checking is not enough to pay
                     {
                         return false;
                     }
                 }
-                else
+                else//if there is no saving account
                 {
                     return false;
                 }

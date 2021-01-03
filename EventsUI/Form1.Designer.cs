@@ -41,6 +41,8 @@ namespace EventsUI
             this.btnRecordTransaction = new System.Windows.Forms.Button();
             this.txtCheckingBalance = new System.Windows.Forms.TextBox();
             this.txtSavingBalance = new System.Windows.Forms.TextBox();
+            this.lblError = new System.Windows.Forms.Label();
+            this.cbxStopOverdraft = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -155,11 +157,37 @@ namespace EventsUI
             this.txtSavingBalance.Size = new System.Drawing.Size(122, 22);
             this.txtSavingBalance.TabIndex = 12;
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(448, 34);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(95, 29);
+            this.lblError.TabIndex = 13;
+            this.lblError.Text = "<none>";
+            this.lblError.Visible = false;
+            this.lblError.Click += new System.EventHandler(this.lblError_Click);
+            // 
+            // cbxStopOverdraft
+            // 
+            this.cbxStopOverdraft.AutoSize = true;
+            this.cbxStopOverdraft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxStopOverdraft.Location = new System.Drawing.Point(112, 291);
+            this.cbxStopOverdraft.Name = "cbxStopOverdraft";
+            this.cbxStopOverdraft.Size = new System.Drawing.Size(161, 29);
+            this.cbxStopOverdraft.TabIndex = 14;
+            this.cbxStopOverdraft.Text = "Stop Overdraft";
+            this.cbxStopOverdraft.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1196, 532);
+            this.Controls.Add(this.cbxStopOverdraft);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.txtSavingBalance);
             this.Controls.Add(this.txtCheckingBalance);
             this.Controls.Add(this.btnRecordTransaction);
@@ -193,6 +221,8 @@ namespace EventsUI
         private System.Windows.Forms.Button btnRecordTransaction;
         private System.Windows.Forms.TextBox txtCheckingBalance;
         private System.Windows.Forms.TextBox txtSavingBalance;
+        private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.CheckBox cbxStopOverdraft;
     }
 }
 
