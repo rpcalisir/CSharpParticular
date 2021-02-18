@@ -1,12 +1,13 @@
-﻿using System;
+﻿using SingleResponsibilityConsoleUI.PersonOperations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SingleResponsibilityConsoleUI
+namespace SingleResponsibilityConsoleUI.Account
 {
-    public class CreateUserData
+    public class AccountGenerator
     {
         public static string CreateUserName(Person person)
         {

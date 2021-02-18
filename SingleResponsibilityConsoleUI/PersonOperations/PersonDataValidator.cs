@@ -1,12 +1,13 @@
-﻿using System;
+﻿using SingleResponsibilityConsoleUI.Messages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SingleResponsibilityConsoleUI
+namespace SingleResponsibilityConsoleUI.PersonOperations
 {
-    public class ValidateUserInput
+    public class PersonDataValidator
     {
         public static bool Validate(Person person)
         {
