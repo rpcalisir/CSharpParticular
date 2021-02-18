@@ -6,13 +6,13 @@ namespace OpenClosedPrinciple.OCPLibrary.Helper
 {
     public static class GeneratePeople
     {
-        public static List<IApplicant> Generate()
+        public static List<IApplicant> GenerateMockedPeopleData()
         {
             List<IApplicant> people = new List<IApplicant>()
             {
                 new Person{FirstName = "Recep", LastName = "Calisir"},
-                new Person{FirstName = "Baris", LastName = "OZ"},
-                new Person{FirstName = "Sven", LastName = "Muller"}
+                new Person{FirstName = "Tim", LastName = "Corey"},
+                new Person{FirstName = "Sue", LastName = "Storm"}
             };
             return people;
         }

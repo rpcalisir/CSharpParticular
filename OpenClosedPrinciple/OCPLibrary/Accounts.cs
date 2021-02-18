@@ -11,7 +11,7 @@ namespace OpenClosedPrinciple.OCPLibrary
 {
     public class Accounts
     {
-        public IEmployee CreateAccount(Person person)
+        public IEmployee CreateAccount(IApplicant person)
         {
             IEmployee employee = new Employee
             {
