@@ -13,5 +13,10 @@ namespace SingleResponsibilityConsoleUI.Account
         {
             return $"{person.LastName}{person.FirstName.Substring(0,2)}";
         }
+
+        public static IEnumerable<string> CreateUserNames(IList<Person> people)
+        {
+            return people.Select(p => CreateUserName(p));
+        }
     }
 }

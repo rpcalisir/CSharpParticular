@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DryLibraryTest", "DryLibrar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleResponsibilityConsoleUI", "SingleResponsibilityConsoleUI\SingleResponsibilityConsoleUI.csproj", "{54E5C20F-81C7-47CD-B968-7B554E10D25C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCPConsoleUI", "OCPConsoleUI\OCPConsoleUI.csproj", "{51F82F99-3865-4DE6-82BB-012E978FC200}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCPLibrary", "OCPLibrary\OCPLibrary.csproj", "{73F44CE1-EAC5-4D27-8CDA-0D3A1D1C56FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,14 @@ Global
 		{54E5C20F-81C7-47CD-B968-7B554E10D25C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54E5C20F-81C7-47CD-B968-7B554E10D25C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54E5C20F-81C7-47CD-B968-7B554E10D25C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51F82F99-3865-4DE6-82BB-012E978FC200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F82F99-3865-4DE6-82BB-012E978FC200}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51F82F99-3865-4DE6-82BB-012E978FC200}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51F82F99-3865-4DE6-82BB-012E978FC200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73F44CE1-EAC5-4D27-8CDA-0D3A1D1C56FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F44CE1-EAC5-4D27-8CDA-0D3A1D1C56FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73F44CE1-EAC5-4D27-8CDA-0D3A1D1C56FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73F44CE1-EAC5-4D27-8CDA-0D3A1D1C56FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
