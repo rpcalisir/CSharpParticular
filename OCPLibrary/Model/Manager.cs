@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace OCPLibrary.Model
 {
-    public class Person : IPerson
+    public class Manager : IManager
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public IPersonAccount accountProcessor { get; set; } = new PersonAccount();
+        public IPersonAccount accountProcessor { get; set; } = new ManagerAccount();
     }
 }

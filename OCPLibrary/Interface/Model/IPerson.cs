@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace OCPLibrary.Interface.Model
 {
-    public interface IPerson : IEntity
+    public interface IPerson : IParticipent
     {
-        string FirstName { get; set; }
-        string LastName { get; set; }
+
     }
 }

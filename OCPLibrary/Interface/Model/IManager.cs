@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OCPLibrary.Interface.Model
 {
-    public interface IEntity
+    public interface IManager : IParticipent
     {
 
     }

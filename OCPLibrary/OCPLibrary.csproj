@@ -41,13 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountProcessor\ExecutiveAccount.cs" />
+    <Compile Include="AccountProcessor\ManagerAccount.cs" />
     <Compile Include="Interface\Model\IEmployee.cs" />
-    <Compile Include="Interface\Model\IEntity.cs" />
+    <Compile Include="Interface\Model\IManager.cs" />
+    <Compile Include="Interface\Model\IParticipent.cs" />
     <Compile Include="Interface\Model\IPerson.cs" />
     <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\Executive.cs" />
+    <Compile Include="Model\Manager.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\Accounts.cs" />
+    <Compile Include="AccountProcessor\PersonAccount.cs" />
+    <Compile Include="Interface\AccountProcessor\IPersonAccount.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

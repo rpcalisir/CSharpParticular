@@ -12,5 +12,7 @@ namespace OCPLibrary.Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
+        public bool isManager { get; set; }
+        public bool isExecutive { get; set; }
     }
 }
