@@ -13,7 +13,7 @@ namespace UsingSqlLiteWinFormUI
 {
     public partial class Form1 : Form
     {
-        List<PersonModel> people = new List<PersonModel>();
+        //List<PersonModel> people = new List<PersonModel>();
         public Form1()
         {
             InitializeComponent();
@@ -22,14 +22,15 @@ namespace UsingSqlLiteWinFormUI
 
         private void LoadPeopleList()
         {
-            people.Add(new PersonModel { FirstName = "Tim", LastName = "Corey" });
-            people.Add(new PersonModel { FirstName = "Sue", LastName = "Storm" });
-            people.Add(new PersonModel { FirstName = "Jimmy", LastName = "Knut" });
+            //people.Add(new PersonModel { FirstName = "Tim", LastName = "Corey" });
+            //people.Add(new PersonModel { FirstName = "Sue", LastName = "Storm" });
+            //people.Add(new PersonModel { FirstName = "Jimmy", LastName = "Knut" });
+            var people = SqlLiteDataAccess.LoadFromDatabase();
 
-            WireUpPeopleList();
+            WireUpPeopleList(people);
         }
 
-        private void WireUpPeopleList()
+        private void WireUpPeopleList(List<PersonModel> people)
         {
             lstListPeople.DataSource = null;
             lstListPeople.DataSource = people;
@@ -48,17 +49,18 @@ namespace UsingSqlLiteWinFormUI
             person.FirstName = txtFirstName.Text;
             person.LastName = txtLastName.Text;
 
-            people.Add(person);
+            //people.Add(person);
+            SqlLiteDataAccess.SaveToDatabase(person);
 
             txtFirstName.Text = "";
             txtLastName.Text = "";
 
-            WireUpPeopleList();
+            //WireUpPeopleList();
         }
 
         private void btnRefreshList_Click(object sender, EventArgs e)
         {
-            people.Clear();
+            //people.Clear();
             LoadPeopleList();
         }
     }
